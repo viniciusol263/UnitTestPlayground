@@ -13,13 +13,6 @@ set(GEOMETRICSHAPES_SRC
 
 add_executable(GeometricShapes ${GEOMETRICSHAPES_MAIN} ${GEOMETRICSHAPES_SRC})
 
-find_library(FillAttributesLib FillAttributes PATHS ${GEOMETRICSHAPES_LIBS_DIR}/FillAttributes NO_CACHE)
-find_library(FileOperationsLib FileOperations PATHS ${GEOMETRICSHAPES_LIBS_DIR}/FileOperations NO_CACHE)
-find_library(LoggingLib Logging PATHS ${GEOMETRICSHAPES_LIBS_DIR}/Logging NO_CACHE)
-find_library(ExceptionHandlerLib ExceptionHandler PATHS ${GEOMETRICSHAPES_LIBS_DIR}/ExceptionHandler NO_CACHE)
-
-
-
 set_property(TARGET GeometricShapes PROPERTY CXX_STANDARD 20)
 target_include_directories(GeometricShapes PUBLIC 
                                                   ${GEOMETRICSHAPES_SRC_DIR}
@@ -28,8 +21,8 @@ target_include_directories(GeometricShapes PUBLIC
                                                   ${GEOMETRICSHAPES_SRC_DIR}/libs/FileOperations
                                                   ${GEOMETRICSHAPES_SRC_DIR}/libs/Logging
                                                   ${GEOMETRICSHAPES_SRC_DIR}/libs/ExceptionHandler)
-target_link_libraries(GeometricShapes ${FillAttributesLib} ${FileOperationsLib} ${LoggingLib} ${ExceptionHandlerLib})
-
+                                                  
+target_link_libraries(GeometricShapes FillAttributes FileOperations Logging ExceptionHandler)
 
 add_subdirectory(${GEOMETRICSHAPES_SRC_DIR}/libs/FillAttributes)
 add_subdirectory(${GEOMETRICSHAPES_SRC_DIR}/libs/FileOperations)
